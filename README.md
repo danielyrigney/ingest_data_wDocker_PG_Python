@@ -259,20 +259,24 @@ services:
 ### SQL 
 
 * count total number of records in the green_taxi_data: 
+
 SELECT COUNT(1) FROM green_taxi_trips;
 
 A: 630918
 
 
 * count number of rides on a given date 
+
 SELECT COUNT(1) 
 FROM green_taxi_trips 
 WHERE 
 	date_trunc('day', green_taxi_trips.lpep_pickup_datetime) = '2019-01-15' 
 	AND date_trunc('day', green_taxi_trips.lpep_pickup_datetime) = '2019-01-15';
+
 A: 20689
 
 * count longest distance ride on each day 
+
 SELECT 
 	date_trunc('day', green_taxi_trips.lpep_pickup_datetime) AS days, 
 	MAX(trip_distance)
@@ -282,6 +286,7 @@ ORDER BY days;
 
 
 * select the the date of the longest distance taxi ride 
+
 SELECT date_trunc('day', green_taxi_trips.lpep_pickup_datetime) AS date,
 	   trip_distance 
 FROM green_taxi_trips
@@ -291,6 +296,7 @@ A: "2019-01-15 00:00:00"	117.99
 
 
 * select number of rides with count of  passengers on specific date 
+
 SELECT 
 	COUNT(index)
 FROM green_taxi_trips 
@@ -311,6 +317,7 @@ WHERE
 A: 254
 
 * Needs work! 
+
 SELECT green_taxi_trips.tip_amount, zones."Zone"
 FROM green_taxi_trips
 INNER JOIN zones ON green_taxi_trips."PULocationID" = zones."LocationID"
